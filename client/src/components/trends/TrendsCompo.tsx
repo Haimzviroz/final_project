@@ -1,8 +1,6 @@
 import { BarChart } from "@mui/x-charts";
 import { useEffect, useState } from "react";
 import IncidentFilters from "./trendsFilter";
-import CircularIndeterminate from "../CircularIndeterminate";
-
 export interface ITrends {
     _id: {
         month: number;
@@ -61,7 +59,6 @@ const TrendsCompo = () => {
 
     return (
         <div>
-            {trends.length === 0 && <CircularIndeterminate />}
             <div>
                 <IncidentFilters
                     selectedQuery={selectedQuery}
