@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -24,10 +24,10 @@ const navItems = [
   { label: "Top Groups", path: "/topGroups" },
   { label: "Trends", path: "/trends" },
 ];
-
 export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // נתיב נוכחי
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -43,10 +43,20 @@ export default function DrawerAppBar() {
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton
-              sx={{ textAlign: "center" }}
+              sx={{
+                textAlign: "center",
+                backgroundColor: location.pathname === item.path ? "#f0f0f0" : "transparent",
+              }}
               onClick={() => navigate(item.path)}
             >
-              <ListItemText primary={item.label} />
+              <ListItemText
+                primary={item.label}
+                primaryTypographyProps={{
+                  style: {
+                    fontWeight: location.pathname === item.path ? "bold" : "normal",
+                  },
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -79,7 +89,10 @@ export default function DrawerAppBar() {
             {navItems.map((item) => (
               <Button
                 key={item.label}
-                sx={{ color: "#fff" }}
+                sx={{
+                  color: location.pathname === item.path ? "#ffcc00" : "#fff",
+                  fontWeight: location.pathname === item.path ? "bold" : "normal",
+                }}
                 onClick={() => navigate(item.path)}
               >
                 {item.label}

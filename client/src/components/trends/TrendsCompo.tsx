@@ -1,6 +1,7 @@
 import { BarChart } from "@mui/x-charts";
 import { useEffect, useState } from "react";
 import IncidentFilters from "./trendsFilter";
+import CircularIndeterminate from "../CircularIndeterminate";
 
 export interface ITrends {
     _id: {
@@ -30,7 +31,9 @@ const TrendsCompo = () => {
     >("2017");
     useEffect(() => {
         const fetchTrends = async () => {
-            let Baseurl = `${import.meta.env.VITE_BASEURL}analysis/incident-trends/`;
+            let Baseurl = `${
+                import.meta.env.VITE_BASEURL
+            }analysis/incident-trends/`;
             if (typeof selectedQuery === "string") {
                 Baseurl += `${selectedQuery}`;
             } else if (
@@ -55,35 +58,39 @@ const TrendsCompo = () => {
         };
         fetchTrends();
     }, [selectedQuery]);
+
     return (
         <div>
-            <IncidentFilters
-                selectedQuery={selectedQuery}
-                setSelectedQuery={setSelectedQuery}
-            />
-            <BarChart
-                xAxis={[
-                    {
-                        scaleType: "band",
-                        data: trends.map((d) => months[d._id.month - 1]),
-                    },
-                ]}
-                series={[
-                    {
-                        data: trends.map((d) => d.count),
-                    },
-                ]}
-                height={450}
-                title="Incident Trends"
-                sx={{
-                    margin: "10px",
-                    padding: "10px",
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            />
+            {trends.length === 0 && <CircularIndeterminate />}
+            <div>
+                <IncidentFilters
+                    selectedQuery={selectedQuery}
+                    setSelectedQuery={setSelectedQuery}
+                />
+                <BarChart
+                    xAxis={[
+                        {
+                            scaleType: "band",
+                            data: trends.map((d) => months[d._id.month - 1]),
+                        },
+                    ]}
+                    series={[
+                        {
+                            data: trends.map((d) => d.count),
+                        },
+                    ]}
+                    height={450}
+                    title="Incident Trends"
+                    sx={{
+                        margin: "10px",
+                        padding: "10px",
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                />
+            </div>
         </div>
     );
 };
