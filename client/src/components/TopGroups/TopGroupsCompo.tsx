@@ -36,7 +36,7 @@ const TopGroupsCompo = () => {
     useEffect(() => {
         const fetchTopGroups = async () => {
             let Baseurl =
-                `http://localhost:3000/api/relationships/top-groups/` + region;
+                `${import.meta.env.VITE_BASEURL}relationships/top-groups/${region}`;
             try {
                 const response = await fetch(Baseurl);
                 const data = await response.json();

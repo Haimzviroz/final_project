@@ -18,7 +18,7 @@ const ByYearFilter: React.FC<ByYearFilterProps> = ({ setGname }) => {
         const fetchGnames = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/staticData/gnames"
+                    `${import.meta.env.VITE_BASEURL}staticData/gnames`
                 );
                 const data = await response.json();
                 setGnamesList(data);

@@ -21,7 +21,7 @@ const DeadliestAttackCompo = () => {
         const fetchAttacks = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:3000/api/relationships/deadliest-regions/${gname}`
+                    `${import.meta.env.VITE_BASEURL}relationships/deadliest-regions/${gname}`
                 );
                 const data = await response.json();
                 setAttacks(data);

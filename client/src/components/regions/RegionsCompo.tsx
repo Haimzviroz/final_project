@@ -7,7 +7,7 @@ const RegionsCompo = () => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/analysis/highest-casualty-regions"
+                    `${import.meta.env.VITE_BASEURL}analysis/highest-casualty-regions`
                 );
                 const data = await response.json();
                 setLocations(data);

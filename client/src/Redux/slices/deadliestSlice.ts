@@ -23,7 +23,7 @@ export const getDeadliestAttackTypes = createAsyncThunk(
     async () => {
         try {
             const response = await axiox.get(
-                "http://localhost:3000/api/analysis/deadliest-attack-types"
+                `${import.meta.env.VITE_BASEURL}analysis/deadliest-attack-types`
             );
             return response.data;
         } catch (error: any) {

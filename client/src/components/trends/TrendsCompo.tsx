@@ -30,7 +30,7 @@ const TrendsCompo = () => {
     >("2017");
     useEffect(() => {
         const fetchTrends = async () => {
-            let Baseurl = `http://localhost:3000/api/analysis/incident-trends/`;
+            let Baseurl = `${import.meta.env.VITE_BASEURL}analysis/incident-trends/`;
             if (typeof selectedQuery === "string") {
                 Baseurl += `${selectedQuery}`;
             } else if (

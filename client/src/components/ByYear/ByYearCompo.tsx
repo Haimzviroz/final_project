@@ -20,9 +20,10 @@ const ByYearCompo = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let Baseurl =
-                "http://localhost:3000/api/relationships/groups-by-year/" +
-                year;
+            let Baseurl = `${
+                import.meta.env.VITE_BASEURL
+            }relationships/groups-by-year/
+                ${year}`;
             try {
                 const response = await fetch(Baseurl);
                 const data = await response.json();
@@ -36,9 +37,9 @@ const ByYearCompo = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let Baseurl =
-                "http://localhost:3000/api/relationships/groups-by-organization/" +
-                org;
+            let Baseurl = `${
+                import.meta.env.VITE_BASEURL
+            }relationships/groups-by-organization/${org}`;
             try {
                 const response = await fetch(Baseurl);
                 const data = await response.json();
