@@ -13,8 +13,13 @@ RUN echo "Building with VITE_BASEURL=${VITE_BASEURL}"
 # הרצת הבילד של Vite
 RUN npm run build
 
-# שלב 2: הפעלת הפרויקט ב-Nginx
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+# שלב 2: הפעלת הפרויקט
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=build /app/dist ./dist
+COPY package*.json ./
+RUN npm install --production
+
+# הפעלת השרת
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
