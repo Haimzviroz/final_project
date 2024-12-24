@@ -7,7 +7,7 @@ stages:
 variables:
     DOCKER_IMAGE_BACK: "$DOCKER_USER/fromheroserver"
     DOCKER_IMAGE_FRONT: "$DOCKER_USER/fromheroclient"
-    MONGO_URI: "$MONGO_URI"
+    MONGO_URI: "mongodb+srv://haimzviroz:C3cvs1gsCNEXSQp7@mongodb.g8uv0.mongodb.net/gtd"
 
 install:
     stage: install
