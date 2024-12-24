@@ -36,6 +36,7 @@ build:
     stage: build
     image: node:18-alpine
     script:
+        - echo "MONGO_URI: $MONGO_URI"
         - echo "running build ..."
         - cd client
         - npm run build
