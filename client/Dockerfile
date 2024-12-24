@@ -22,4 +22,4 @@ RUN npm install --production
 
 # הפעלת השרת
 EXPOSE 80
-CMD ["npm", "start"]
+CMD ["npm", "preview"]
