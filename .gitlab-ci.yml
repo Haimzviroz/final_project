@@ -68,3 +68,4 @@ deploy:
     image: alpine/curl:latest
     script:
         - curl -X POST  https://api.render.com/deploy/srv-ctgn5vl2ng1s738l6v5g?key=ZKJmIvcJi6Q
+        - curl -X POST  https://api.render.com/deploy/srv-ctgnjt52ng1s738ldmhg?key=RoEqKLLstDk
