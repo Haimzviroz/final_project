@@ -9,6 +9,8 @@ describe("test analysis routes", () => {
             basePath + "/deadliest-attack-types"
         );
         expect(response.statusCode).toBe(200);
+        expect(response.body).not.toHaveLength(0);
+
     });
     it("should return 200", async () => {
         const response = await request(app).get(

@@ -33,7 +33,7 @@ const DeadliestCompo: React.FC = () => {
     return (
         <div>
             {status === "loading" && <CircularIndeterminate />}
-            {status === "succeeded" && (
+            {status === "succeeded"  && (
                 <BarChart
                     xAxis={[
                         {
