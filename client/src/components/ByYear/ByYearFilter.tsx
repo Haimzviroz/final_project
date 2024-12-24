@@ -6,7 +6,6 @@ import {
     MenuItem,
     TextField,
 } from "@mui/material";
-import { useState } from "react";
 
 interface ByYearFilterProps {
     selectedYear: string;

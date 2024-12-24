@@ -1,9 +1,6 @@
 import {
     Box,
     FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
     TextField,
     Button,
     Autocomplete,
@@ -65,7 +62,7 @@ const ByYearFilter: React.FC<ByYearFilterProps> = ({ setGname }) => {
                         <TextField {...params} label="Select Group" />
                     )}
                     value={searchTerm}
-                    onChange={(event, newValue) =>
+                    onChange={( _, newValue) =>
                         setSearchTerm(newValue || "")
                     }
                 />

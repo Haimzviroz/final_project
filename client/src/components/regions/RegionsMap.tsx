@@ -1,6 +1,6 @@
 // components/IncidentMap.tsx
-import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import React from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -22,16 +22,7 @@ const IncidentMap: React.FC<IncidentMapProps> = ({ incidents }) => {
         iconSize: [25, 41],
         iconAnchor: [12, 41],
     });
-    // const CenterMap: React.FC = () => {
-    //   const map = useMap();
-    //   useEffect(() => {
-    //     if (incidents.length > 0) {
-    //       const firstIncident = incidents[0];
-    //       map.setView([firstIncident.latitude, firstIncident.longitude], 13);
-    //     }
-    //   }, [incidents, map]);
-    //   return null;
-    // };
+
     return (
         <MapContainer
             center={[0, 0]}
@@ -58,7 +49,6 @@ const IncidentMap: React.FC<IncidentMapProps> = ({ incidents }) => {
                         </Marker>
                     )
             )}
-            {/* <CenterMap /> */}
         </MapContainer>
     );
 };
