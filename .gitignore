@@ -1,0 +1,5 @@
+node_modules/
+.env
+dist/
+coverage/
+globalterrorismdb_0718dist.json

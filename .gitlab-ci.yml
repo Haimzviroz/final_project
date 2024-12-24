@@ -1,0 +1,70 @@
+stages:
+    - install
+    - test
+    - build
+    - dockerbuildpush
+    - deploy
+variables:
+    DOCKER_IMAGE_BACK: "$DOCKER_USER/fromheroserver"
+    DOCKER_IMAGE_FRONT: "$DOCKER_USER/fromheroclient"
+
+install:
+    stage: install
+    image: node:18-alpine
+    script:
+        - echo "Installing dependencies ..."
+        - cd client
+        - npm i
+        - cd ..
+        - cd server
+        - npm i
+    artifacts:
+        paths:
+            - server/node_modules/
+            - client/node_modules/
+test:
+    stage: test
+    image: node:18-alpine
+    script:
+        - echo "Testing with unitest"
+        - cd server
+        - npm run test
+    dependencies:
+        - install
+build:
+    stage: build
+    image: node:18-alpine
+    script:
+        - echo "running build ..."
+        - cd client
+        - npm run build
+        - cd ..
+        - cd server
+        - npm run build
+    artifacts:
+        paths:
+            - server/dist/
+            - client/dist/
+    dependencies:
+        - install
+dockerbuildpush:
+    stage: dockerbuildpush
+    image: docker:20.10.7
+    services:
+        - docker:20.10.7-dind
+    before_script:
+        - export DOCKER_HOST=tcp://docker:2375
+        #   - if [ -z "$DOCKER_USER" ] || [ -z "$DOCKER_PASSWORD" ]; then echo "Missing DOCKER_USER or DOCKER_PASSWORD"; exit 1; fi
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+    script:
+        - |
+         echo "VITE_BASEURL: $VITE_BASEURL"
+        - docker build -t $DOCKER_IMAGE_BACK:latest ./server
+        - docker build --build-arg VITE_BASEURL=$VITE_BASEURL -t $DOCKER_IMAGE_FRONT:latest ./client 
+        - docker push $DOCKER_IMAGE_BACK:latest
+        - docker push $DOCKER_IMAGE_FRONT:latest
+deploy:
+    stage: deploy
+    image: alpine/curl:latest
+    script:
+        - curl -X POST  https://api.render.com/deploy/srv-ctgn5vl2ng1s738l6v5g?key=ZKJmIvcJi6Q

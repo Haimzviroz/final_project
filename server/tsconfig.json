@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist", // Specifies the output directory for compiled files
+        "rootDir": "./src", // (Optional) Specifies the root directory of the source files
+        "esModuleInterop": true, // Optional: ensures compatibility between CommonJS and ESModules
+        "target": "ES6", // Optional: sets the JavaScript target version
+        "module": "commonjs" // Optional: specifies module code generation
+    },
+    "include": [
+        "src/**/*.ts" // (Optional) Includes all TypeScript files in the src folder
+, "src/config/db.ts"    ],
+    "exclude": [
+        "node_modules" // Excludes node_modules from compilation
+    ]
+}
