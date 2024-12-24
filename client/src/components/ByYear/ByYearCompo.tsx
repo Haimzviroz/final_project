@@ -79,7 +79,7 @@ const ByYearCompo = () => {
                                 : byOrgData.map((d) => d.count),
                     },
                 ]}
-                height={500}
+                height={450}
                 title="Number of incidents by year"
                 sx={{
                     padding: "10px",

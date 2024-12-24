@@ -36,7 +36,7 @@ const IncidentMap: React.FC<IncidentMapProps> = ({ incidents }) => {
         <MapContainer
             center={[0, 0]}
             zoom={2}
-            style={{ height: "90vh", width: "100%", zIndex: 0 }}
+            style={{ height: "80vh", width: "100%", zIndex: 0 }}
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

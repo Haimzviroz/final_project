@@ -58,6 +58,7 @@ const ByYearFilter: React.FC<ByYearFilterProps> = ({
                     id="query-select"
                     value={method}
                     onChange={(e) => setMethod(e.target.value)}
+                    label="בחר שיטת סינון"
                 >
                     <MenuItem value={"byYear"}>
                         הצגת מספר התקריות לכל ארגון לפי שנה
@@ -87,7 +88,9 @@ const ByYearFilter: React.FC<ByYearFilterProps> = ({
                             value={selctedOrganization}
                             onChange={(e) =>
                                 setSelectedOrganization(e.target.value)
+                            
                             }
+                            label="בחר ארגון"
                         >
                             {listOfOrganizations.map((org) => (
                                 <MenuItem value={org}>{org}</MenuItem>

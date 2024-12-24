@@ -76,7 +76,7 @@ const TopGroupsCompo = () => {
                         data: FilterdTopFiveGrupes.map((d) => d.count),
                     },
                 ]}
-                height={500}
+                height={400}
                 title="Top Groups"
                 sx={{
                     margin: "10px",

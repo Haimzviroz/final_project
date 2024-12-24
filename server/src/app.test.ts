@@ -2,21 +2,66 @@ import request from "supertest";
 import mongoose from "mongoose";
 import app, { server } from "./app";
 
-describe("GET /", () => {
-    it("should return a 200 status code and Hello World!", async () => {
-        const response = await request(app).get("/");
+describe("test analysis routes", () => {
+    const basePath = "/api/analysis";
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/deadliest-attack-types"
+        );
         expect(response.statusCode).toBe(200);
-        expect(response.text).toBe("Hello World!");
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/highest-casualty-regions"
+        );
+        expect(response.statusCode).toBe(200);
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/incident-trends/2017"
+        );
+        expect(response.statusCode).toBe(200);
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/incident-trends/?min=2015&max=2017"
+        );
+        expect(response.statusCode).toBe(200);
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/incident-trends/?last=5"
+        );
+        expect(response.statusCode).toBe(200);
     });
 });
-
-describe("POST /unknown", () => {
-    it("should return a 404 status code for unknown routes", async () => {
-        const response = await request(app).post("/unknown");
-        expect(response.statusCode).toBe(404);
+describe("test relationships routes", () => {
+    const basePath = "/api/relationships";
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/top-groups/Israel"
+        );
+        expect(response.statusCode).toBe(200);
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/groups-by-year/2017"
+        );
+        expect(response.statusCode).toBe(200);
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/groups-by-organization/Hamas"
+        );
+        expect(response.statusCode).toBe(200);
+    });
+    it("should return 200", async () => {
+        const response = await request(app).get(
+            basePath + "/deadliest-regions/Hamas"
+        );
+        expect(response.statusCode).toBe(200);
     });
 });
-
 // סגירת חיבור MongoDB לאחר כל הבדיקות
 afterAll(async () => {
     await mongoose.connection.close(); // סוגר את החיבור

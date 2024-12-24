@@ -73,7 +73,7 @@ const TrendsCompo = () => {
                         data: trends.map((d) => d.count),
                     },
                 ]}
-                height={500}
+                height={450}
                 title="Incident Trends"
                 sx={{
                     margin: "10px",

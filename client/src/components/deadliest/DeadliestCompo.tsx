@@ -46,7 +46,7 @@ const DeadliestCompo: React.FC = () => {
                             data: deadliest.map((d) => d.countOfCasualties),
                         },
                     ]}
-                    height={600}
+                    height={580}
                     title="Deadliest Attack Types"
                     sx={{
                         margin: "10px",
