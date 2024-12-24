@@ -7,6 +7,8 @@ COPY package*.json ./
 RUN npm install
 # העתקת כל שאר הקבצים
 COPY . .
+ARG MONGO_URI
+ENV MONGO_URI=${MONGO_URI}
 # קומפילציה של TypeScript לJavaScript
 RUN npm run build
 # חשיפת פורט 4000 או כל פורט אחר שהאפליקציה משתמשת בו
